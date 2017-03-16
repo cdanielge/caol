@@ -7,7 +7,6 @@ class Login extends CI_Controller {
 	{
 		//$this->session->sess_destroy();
 		$user = $this->input->post('user');
-		echo "". $this->input->post;
 		$password = $this->input->post('password');
 		$datos_session['log_in']=false;
 		$userObj = null;
@@ -22,8 +21,7 @@ class Login extends CI_Controller {
 			echo 'USUARIO: ' . $userObj->no_usuario. '<br> PASS:' .$password;
 			header("Location: ". base_url());
 		}else {
-			echo "datos". $user;
-			//header("Location: ". base_url()."logout");
+			header("Location: ". base_url()."logout");
 		}
 		
 	}

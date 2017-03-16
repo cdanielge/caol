@@ -6,9 +6,11 @@
         <div class="NavLateral-content full-width">
             <header class="NavLateral-title full-width center-align ">
             <!-- <figure class="full-width NavLateral-logo"> -->
-                <img src="<?= base_url() ?>static/assets/img/agence.png" alt="agence" class="responsive-img center-box">
+                <a href="<?=base_url()?>">
+                <img src="<?= base_url() ?>static/assets/img/agence.png" alt="agence" class="responsive-img center-box" style='padding-top: 5px'>
                 <figcaption class="center-align"></figcaption>
                 <i class="zmdi zmdi-close NavLateral-title-btn ShowHideMenu"></i>
+                </a>
             <!-- </figure>                 -->
             </header>
  
@@ -38,7 +40,7 @@
                     <li>
                         <a href="#" class="NavLateral-DropDown  waves-effect waves-light"><i class="zmdi zmdi-accounts-alt zmdi-hc-fw"></i> <i class="zmdi zmdi-chevron-down NavLateral-CaretDown"></i> Comercial</a>
                         <ul class="full-width">
-                            <li><a href="template.html" class="waves-effect waves-light">Performance Comercial</a></li>
+                            <li><a href="<?=base_url()?>performance" class="waves-effect waves-light">Performance Comercial</a></li>
                         </ul>
                     </li> 
                     <li class="NavLateralDivider"></li>

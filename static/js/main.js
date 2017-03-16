@@ -63,7 +63,15 @@ $(document).ready(function(){
         }else{
             NotificationArea.addClass('NotificationArea-show');
         }
-    });     
+    });  
+        $('ul.tabs').tabs();
+    if ($('#tabs-swipe-demo').length) {
+        $('#tabs-swipe-demo').tabs({
+          'swipeable': true,
+          'responsiveThreshold': Infinity
+        });
+    } 
+
 });
 (function($){
     $(window).load(function(){
@@ -79,5 +87,14 @@ $(document).ready(function(){
             autoHideScrollbar: true,
             scrollButtons:{ enable: true }
         });
+    });
+
+
+
+    $('select').not('.disabled').material_select();    
+    $('.datepicker').pickadate({
+        format: "yyyy-mm",
+        selectYears: 20,         
+        selectMonths: true
     });
 })(jQuery);

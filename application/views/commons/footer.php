@@ -3,10 +3,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
-                        <h5 class="white-text">Footer Content</h5>
+                        <h5 class="white-text">Prototipo</h5>
                         <p class="grey-text text-lighten-4">
                             Protótipo para validación de Candidato.<br>
-                            La validación consiste en el desarrollo de la funcionalidad  <a href="">"Performance Comercial"</a> (Comercial -> Performance Comercial).
+                            La validación consiste en el desarrollo de la funcionalidad  <a href="<?=base_url()?>performance">"Performance Comercial"</a> (Comercial -> Performance Comercial).
                         </p>
                     </div>
                     <div class="col l4 offset-l2 s12">

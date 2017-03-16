@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="icon" type="image/ico" href="<?= base_url() ?>static/assets/img/favicon.ico">
-    <title>Material Dark</title>
+    <title>Agence - Prototipo</title>
     
      <!-- Normalize CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>static/css/normalize.css">
