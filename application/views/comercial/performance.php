@@ -1,7 +1,7 @@
 <style>
   #sortable1, #sortable2 {
     border: 5px solid #eee;
-    width: 250px;
+    width: 240px;
     min-height: 20px;
 
     list-style-type: none;
@@ -205,7 +205,7 @@
 
             <div id="test-swipe-2" class="col s12 ">Fuera del alcance
 
-            <?php echo var_dump($dump); ?>
+            
    
             </div>
         </div>

@@ -3,7 +3,7 @@
       //echo  $key."====>>".var_dump($value)."<br>";
       ?>
 
-      <table border="1" class="bordered striped">
+      <table border="1" class="bordered striped responsive-table">
         <tr>
           <th colspan="5"><?=$key. "<br>" . $titulo?> </th>
         </tr>
