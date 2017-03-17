@@ -207,7 +207,8 @@ Highcharts.setOptions(Highcharts.theme);
 $(function () {
 $('#grafico_gra').highcharts({
         title: {
-            text: 'Performance Comercial'
+            useHTML: true,
+            text: 'Performance Comercial<br><?=$titulo?>'
         },
         xAxis: {
             categories: [<?php foreach ($periodos as $periodo => $value){echo "'".$periodo."',";} ?>]

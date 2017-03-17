@@ -216,7 +216,8 @@ $(function () {
             }
         },
         title: {
-            text: 'Participación de ganancias'
+            useHTML: true,
+            text: 'Participación de ganancias <?=$titulo?>'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -229,7 +230,8 @@ $(function () {
                 dataLabels: {
                     enabled: true,
                     format: '{point.name} <b>{point.percentage:.1f}%</b>'
-                }
+                },
+                showInLegend: true
             }
         },
         series: [{
@@ -240,13 +242,4 @@ $(function () {
     });
 });
 
-
-
     </script>
-
-
-
-
-
-
-       

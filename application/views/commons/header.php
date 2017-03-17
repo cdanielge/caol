@@ -14,7 +14,7 @@
                         <span class="ContentPage-Nav-indicator bg-danger">2</span>
                     </a>
                 </li>
-            </ul>   
+            </ul>
         </div>
 
         <!-- Notifications area -->
@@ -25,18 +25,18 @@
                 <div class="Notification-text">
                     <p>
                         <i class="zmdi zmdi-circle tooltipped" data-position="left" data-delay="50" data-tooltip="Notification as UnRead"></i>
-                        <strong>New User Registration</strong> 
+                        <strong>New User Registration</strong>
                         <br>
                         <small>Just Now</small>
                     </p>
                 </div>
-            </a>  
+            </a>
             <a href="#" class="waves-effect Notification">
                 <div class="Notification-icon"><i class="zmdi zmdi-cloud-download bg-primary"></i></div>
                 <div class="Notification-text">
                     <p>
                         <i class="zmdi zmdi-circle-o tooltipped" data-position="left" data-delay="50" data-tooltip="Notification as Read"></i>
-                        <strong>New Updates</strong> 
+                        <strong>New Updates</strong>
                         <br>
                         <small>30 Mins Ago</small>
                     </p>
@@ -47,18 +47,18 @@
                 <div class="Notification-text">
                     <p>
                         <i class="zmdi zmdi-circle tooltipped" data-position="left" data-delay="50" data-tooltip="Notification as UnRead"></i>
-                        <strong>Archive uploaded</strong> 
+                        <strong>Archive uploaded</strong>
                         <br>
                         <small>31 Mins Ago</small>
                     </p>
                 </div>
-            </a> 
+            </a>
             <a href="#" class="waves-effect Notification">
                 <div class="Notification-icon"><i class="zmdi zmdi-mail-send bg-danger"></i></div>
                 <div class="Notification-text">
                     <p>
                         <i class="zmdi zmdi-circle-o tooltipped" data-position="left" data-delay="50" data-tooltip="Notification as Read"></i>
-                        <strong>New Mail</strong> 
+                        <strong>New Mail</strong>
                         <br>
                         <small>37 Mins Ago</small>
                     </p>
@@ -69,10 +69,10 @@
                 <div class="Notification-text">
                     <p>
                         <i class="zmdi zmdi-circle-o tooltipped" data-position="left" data-delay="50" data-tooltip="Notification as Read"></i>
-                        <strong>Folder delete</strong> 
+                        <strong>Folder delete</strong>
                         <br>
                         <small>1 hours Ago</small>
                     </p>
                 </div>
-            </a>  
+            </a>
         </section>

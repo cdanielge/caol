@@ -14,14 +14,11 @@ class Performance extends CI_Controller {
         $this->load->view('/commons/header');
         $consultores = $this->usuario->getConsultores();
         $data['consultores'] = $consultores;
-        $data['dump'] = '$consultores';
         
         $this->load->view('/comercial/performance', $data);    
         $this->load->view('/commons/footer');
         $this->load->view('/commons/scripts');
-        $this->load->view('/commons/close');
-
-    
+        $this->load->view('/commons/close');    
 	}
 
     public function relatorio()
@@ -31,14 +28,14 @@ class Performance extends CI_Controller {
         }
         $meses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' );
         $consultores_in= explode(',', $this->input->post('contultores_sel'));
-        $f1=$this->input->post('dt1'); 
-        $f2=$this->input->post('dt2'); 
+        $f1=$this->input->post('anho_desde').'-'.$this->input->post('mes_desde'); 
+        $f2=$this->input->post('anho_hasta').'-'.$this->input->post('mes_hasta'); 
+        $titulo = "desde ".$meses[$this->input->post('mes_desde')-1]. " de ". $this->input->post('anho_desde'). " a ". $meses[$this->input->post('mes_hasta')-1]. " de ". $this->input->post('anho_hasta');
         $desempenho=null;
         $ganancia=null;
         foreach ($consultores_in as  $consultor) {
 
             $ganancia[$consultor] =[];
-
             $desempenho = $this->desempenho->getDesempenhoConsultor($consultor, $f1, $f2 );
             $costo = $this->desempenho->getCostofijoConsultor($consultor);
             $total=null;
@@ -65,6 +62,7 @@ class Performance extends CI_Controller {
         $consultores = $this->usuario->getConsultores();
         $data['consultores'] = $consultores;
         $data['ganancia'] = $ganancia;
+        $data['titulo'] = $titulo;
         $data['dump']='$a';
         $this->load->view('/comercial/performance', $data);    
         $this->load->view('/commons/footer');
@@ -80,8 +78,10 @@ class Performance extends CI_Controller {
         }
         
         $consultores_in= explode(',', $this->input->post('contultores_sel'));
-        $f1=$this->input->post('dt1'); 
-        $f2=$this->input->post('dt2'); 
+        $f1=$this->input->post('anho_desde').'-'.$this->input->post('mes_desde'); 
+        $f2=$this->input->post('anho_hasta').'-'.$this->input->post('mes_hasta'); 
+        $titulo = "desde ".$meses[$this->input->post('mes_desde')-1]. " de ". $this->input->post('anho_desde'). " a ". $meses[$this->input->post('mes_hasta')-1]. " de ". $this->input->post('anho_hasta');
+
         $desempenho=null;
         $ganancia=[];
         foreach ($consultores_in as  $consultor) {
@@ -97,7 +97,6 @@ class Performance extends CI_Controller {
             array_push($ganancia, array($consultor, $total['receita']));
             
         }
-        $a= $ganancia; //var_dump($desempenho);
 
         $this->load->view('/commons/head');
         $this->load->view('/commons/nav');
@@ -106,7 +105,7 @@ class Performance extends CI_Controller {
         $consultores = $this->usuario->getConsultores();
         $data['consultores'] = $consultores;
         $data['pizza'] = $ganancia;
-        $data['dump']=$a;
+        $data['titulo'] = $titulo;
         $this->load->view('/comercial/performance', $data);    
         $this->load->view('/commons/footer');
         $this->load->view('/commons/scripts');
@@ -122,8 +121,9 @@ class Performance extends CI_Controller {
         }
         $meses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' );
         $consultores_in= explode(',', $this->input->post('contultores_sel'));
-        $f1=$this->input->post('dt1'); 
-        $f2=$this->input->post('dt2'); 
+        $f1=$this->input->post('anho_desde').'-'.$this->input->post('mes_desde'); 
+        $f2=$this->input->post('anho_hasta').'-'.$this->input->post('mes_hasta');
+        $titulo = "desde ".$meses[$this->input->post('mes_desde')-1]. " de ". $this->input->post('anho_desde'). " a ". $meses[$this->input->post('mes_hasta')-1]. " de ". $this->input->post('anho_hasta');
         $desempenho=null;
         $ganancia=null;
         $periodos = null;
@@ -140,14 +140,10 @@ class Performance extends CI_Controller {
             
             if ($desempenho){
                 foreach ($desempenho->result() as $value) {
-                    // array_push($ganancia[$consultor],  [$meses[$value->mes-1].' de '. $value->anho => $value->receita]);
-                    //$ganancia[$consultor]= array($meses[$value->mes-1].' de '. $value->anho => $value->receita);
                     $ganancia[$consultor][$meses[$value->mes-1].' de '. $value->anho] = $value->receita;
                     $periodos[$meses[$value->mes-1].' de '. $value->anho]=1;
                 }                
             }
-            // array_push($ganancia[$consultor], $total);
-            
         }
 
         $costos = $costos / count($consultores_in);
@@ -159,7 +155,7 @@ class Performance extends CI_Controller {
         $consultores = $this->usuario->getConsultores();
         $data['consultores'] = $consultores;
         $data['grafico'] = $ganancia;
-        $data['dump']=$ganancia;
+        $data['titulo'] = $titulo;
         $data['periodos']=$periodos;
         $data['costos']=$costos;
         $this->load->view('/comercial/performance', $data);    

@@ -45,6 +45,12 @@
       listar_consultores();
     }
 
+    function ir(controlador){     
+        var forma = document.getElementById('forma');
+        forma.action = controlador;
+        forma.submit();
+    }
+
   </script>
 
    <!-- Main Content -->
@@ -57,18 +63,77 @@
             <div id="test-swipe-1" class="col s12 ">
 
                 <br>
-                <form action="<?=base_url()?>performance/grafico" method="post">
+                <form action="" method="post" id='forma'>
                     <div class="box col l12">
-
                         <div class="input-field  col l2"><label>Periodo:</label></div>
 
                         <div class="input-field col l1">
-                            <input type="date" class="datepicker" id='dt1' name='dt1'>
+                            <!-- <input type="date" class="datepicker" id='dt1' name='dt1'> -->
+                            <select name="mes_desde">
+                              <option value="01">Enero</option>
+                              <option value="02">Febrero</option>
+                              <option value="03">Marzo</option>
+                              <option value="04">Abril</option>
+                              <option value="05">Mayo</option>
+                              <option value="06">Junio</option>
+                              <option value="07">Julio</option>
+                              <option value="08">Agosto</option>
+                              <option value="09">Septiembre</option>
+                              <option value="10">Octubre</option>
+                              <option value="11">Noviembre</option>
+                              <option value="12">Diciembre</option>
+                            </select>
+                            
                         <label for='dt1'><i class="zmdi zmdi-calendar"></i>&nbsp;Desde</label>
                         </div>
                         <div class="input-field col l1">
-                            <input type="date" class="datepicker" id='dt2'  name='dt2' value="">
-                        <label for='dt2'><i class="zmdi zmdi-calendar"></i>&nbsp;Hasta</label>
+                        <select name="anho_desde">
+                              <option value="2007">2007</option>
+                              <option value="2008">2008</option>
+                              <option value="2009">2009</option>
+                              <option value="2010">2010</option>
+                              <option value="2011">2011</option>
+                              <option value="2012">2012</option>
+                              <option value="2013">2013</option>
+                              <option value="2014">2014</option>
+                              <option value="2015">2015</option>
+                              <option value="2016">2016</option>
+                              <option value="2017">2017</option>
+                            </select>
+                        </div>
+                        <div class="input-field col l1">
+                            <!-- <input type="date" class="datepicker" id='dt1' name='dt1'> -->
+                            <select name="mes_hasta">
+                              <option value="01">Enero</option>
+                              <option value="02">Febrero</option>
+                              <option value="03">Marzo</option>
+                              <option value="04">Abril</option>
+                              <option value="05">Mayo</option>
+                              <option value="06">Junio</option>
+                              <option value="07">Julio</option>
+                              <option value="08">Agosto</option>
+                              <option value="09">Septiembre</option>
+                              <option value="10">Octubre</option>
+                              <option value="11">Noviembre</option>
+                              <option value="12">Diciembre</option>
+                            </select>
+                            
+                        <label for='dt1'><i class="zmdi zmdi-calendar"></i>&nbsp;hasta</label>
+                        </div>
+                        <div class="input-field col l1">
+                        <select name="anho_hasta">
+                              <option value="2007">2007</option>
+                              <option value="2008">2008</option>
+                              <option value="2009">2009</option>
+                              <option value="2010">2010</option>
+                              <option value="2011">2011</option>
+                              <option value="2012">2012</option>
+                              <option value="2013">2013</option>
+                              <option value="2014">2014</option>
+                              <option value="2015">2015</option>
+                              <option value="2016">2016</option>
+                              <option value="2017" selected>2017</option>
+                            </select>
                         </div>
                     </div>
                     <div class="box col l12">
@@ -106,9 +171,9 @@
                           <div class="row">
                             
                           
-                            <button type="submit" class="btn waves-effect waves-teal"><i class="zmdi zmdi-format-list-bulleted"></i> Relatorio</button> 
-                            <button type="submit" class="btn waves-effect waves-teal "><i class="zmdi zmdi-developer-board"></i> Gráfico</button> 
-                            <button type="submit" class="btn waves-effect waves-teal "><i class="zmdi zmdi-pizza"></i> Pizza</button>
+                            <button onclick="javascript:ir('<?=base_url()?>performance/relatorio')" class="btn waves-effect waves-teal"><i class="zmdi zmdi-format-list-bulleted"></i> Relatorio</button> 
+                            <button onclick="javascript:ir('<?=base_url()?>performance/grafico')" class="btn waves-effect waves-teal "><i class="zmdi zmdi-developer-board"></i> Gráfico</button> 
+                            <button onclick="javascript:ir('<?=base_url()?>performance/pizza')" class="btn waves-effect waves-teal "><i class="zmdi zmdi-pizza"></i> Pizza</button>
                           </div>
                         </div>
                     </div>
@@ -135,10 +200,7 @@
             </div>
 
             <div id="test-swipe-2" class="col s12 ">Fuera del alcance
-                <?php 
-                      echo "->". var_dump($dump);
-                 ?>    
+   
             </div>
         </div>
     </div>
-    <!-- <hr> --><br><br><br><br><br><br>
