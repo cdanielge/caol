@@ -14,7 +14,6 @@
     margin: 0 5px 5px 5px;
     padding: 5px;
     background-color: #ccc;
-    font-size: 1.2em;
 /*    width: auto;*/
   }
   </style>
@@ -58,7 +57,7 @@
             <div id="test-swipe-1" class="col s12 ">
 
                 <br>
-                <form action="<?=base_url()?>performance/relatorio" method="post">
+                <form action="<?=base_url()?>performance/grafico" method="post">
                     <div class="box col l12">
 
                         <div class="input-field  col l2"><label>Periodo:</label></div>
@@ -68,7 +67,7 @@
                         <label for='dt1'><i class="zmdi zmdi-calendar"></i>&nbsp;Desde</label>
                         </div>
                         <div class="input-field col l1">
-                            <input type="date" class="datepicker" id='dt2'  name='dt2'>
+                            <input type="date" class="datepicker" id='dt2'  name='dt2' value="">
                         <label for='dt2'><i class="zmdi zmdi-calendar"></i>&nbsp;Hasta</label>
                         </div>
                     </div>
@@ -77,6 +76,9 @@
                         <div class="input-field  col l2 s12"><label>Consultores:</label><input type="hidden" id='contultores_sel' name = 'contultores_sel' ></div>
 
                         <div class="input-field col l6 s12">
+                          <div class="row">
+                            
+                          
                             <div class="col l6 s12">
 
                               Elegir<br>
@@ -87,7 +89,7 @@
                                     echo "<li class='item_lista' id='".$row->co_usuario."'  onclick  ='javascript:item_click(this);'>".$row->no_usuario." (".$row->co_usuario .")</li>";      
                                     }
                                 }else{
-                                  echo "<li class='item_lista' id='xxx'  onclick  ='javascript:item_click(this);'>LO SIENTO MARIO... la princesa está en otro castillo </li>";
+                                  echo "No hay consultores configurados";
                                 }
                                 ?>
                             </ul>
@@ -98,66 +100,36 @@
 
                                 </ul>
                             </div>
+                          </div>
                         </div>
                         <div class="col l12" align="center"> 
-                            <button type="submit" class="waves-effect waves-teal btn-primary"><i class="zmdi zmdi-format-list-bulleted"></i> Relatorio</button> 
-                            <button type="submit" class="waves-effect waves-teal btn-primary"><i class="zmdi zmdi-developer-board"></i> Gráfico</button> 
-                            <button type="submit" class="waves-effect waves-teal btn-primary"><i class="zmdi zmdi-pizza"></i> Pizza</button>
+                          <div class="row">
+                            
+                          
+                            <button type="submit" class="btn waves-effect waves-teal"><i class="zmdi zmdi-format-list-bulleted"></i> Relatorio</button> 
+                            <button type="submit" class="btn waves-effect waves-teal "><i class="zmdi zmdi-developer-board"></i> Gráfico</button> 
+                            <button type="submit" class="btn waves-effect waves-teal "><i class="zmdi zmdi-pizza"></i> Pizza</button>
+                          </div>
                         </div>
                     </div>
-                    
                 </FORM>
                 <br><br>
 
                 <?php 
-
                   if (isset($ganancia)){
+                      $this->load->view('comercial/relatorio');
+                  };
+                 ?>
+                <?php 
+                  if (isset($pizza)){
+                      echo '<div class="col l8 push-l2 " ><div id="pizza_gra"  ></div></div>';                      
+                  };
+                 ?>
 
-                    foreach ($ganancia as $key => $value) {
-                      //echo  $key."====>>".var_dump($value)."<br>";
-                      ?>
-
-                      <table border="1" class="bordered striped">
-                        <tr>
-                          <th colspan="5"><?=$key?></th>
-                        </tr>
-                          <tr>
-                            <th>Periodo</th>
-                            <th>Ganancia Liquida</th>
-                            <th>Costo fijo</th>                               
-                            <th>Comisión</th>
-                            <th>Lucro</td>
-                          </tr>
-                        <?php  foreach ($value as $value2) { 
-                            if ($value2['periodo'] == 'SALDO'){
-                              $fila = 'th';
-                              $color = 'blue';
-                            }else{
-                              $fila = 'td';
-                              $color = 'black';
-                            }
-                            if ( $value2['receita']-$value2['comissao']-$value2['costo'] <0 ){
-                              $color='red';
-                            }
-
-                          ?>
-                             <tr>
-                               <<?=$fila?>><?= $value2['periodo'] ?></<?=$fila?>>
-                               <<?=$fila?>>R$ <?=  number_format($value2['receita'],2) ?></<?=$fila?>>
-                               <<?=$fila?>>R$ -<?= number_format($value2['costo'],2) ?></<?=$fila?>>                               
-                               <<?=$fila?>>R$ -<?= number_format($value2['comissao'],2) ?></<?=$fila?>>
-                               <<?=$fila?>><font color="<?=$color?>">R$ <?= number_format($value2['receita']-$value2['comissao']-$value2['costo'],2) ?></font></<?=$fila?>>
-                             </tr>
-
-                         <?php    
-                          } ?>
-                      </table>
-                      <br><br>
-                <?php
-
-                    };
-                  }
-
+                <?php 
+                  if (isset($grafico)){
+                      echo '<div class="col l8 push-l2 " ><div id="grafico_gra" ></div></div>';                      
+                  };
                  ?>
 
             </div>
@@ -165,8 +137,7 @@
             <div id="test-swipe-2" class="col s12 ">Fuera del alcance
                 <?php 
                       echo "->". var_dump($dump);
-                 ?>              
-
+                 ?>    
             </div>
         </div>
     </div>

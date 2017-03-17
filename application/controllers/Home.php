@@ -14,6 +14,8 @@ class Home extends CI_Controller {
         $this->load->view('/commons/header');
         $this->load->view('/commons/main');    
         $this->load->view('/commons/footer');
+        $this->load->view('/commons/scripts');
+        $this->load->view('/commons/close');
     
 	}
 }
