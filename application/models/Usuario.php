@@ -25,10 +25,11 @@ class Usuario extends CI_Model
   public function getConsultores()
   {
       $rs = $this->db->query("
-        select * 
+        select u.no_usuario, u.co_usuario
         from cao_usuario u 
         inner join permissao_sistema ps on  u.co_usuario = ps.co_usuario 
-        where co_sistema=1 and in_ativo='S' and co_tipo_usuario in (0,1,2)");
+        where co_sistema=1 and in_ativo='S' and co_tipo_usuario in (0,1,2)
+        order by no_usuario");
       if ($rs->num_rows()>0){
         return $rs;
       }else {

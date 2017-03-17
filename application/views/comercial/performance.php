@@ -23,8 +23,19 @@
     function item_click(item){      
       var padre = $(item).parent().attr('id');
       if (padre == 'sortable2'){
-        $('#sortable1').append($(item));
+        a = 1
+        $('#sortable1 li').each(function(indice, elemento) {
+          console.log($(elemento).attr('id') + '==' + $(item).attr('id'));
+          if ($(elemento).attr('id') == $(item).attr('id')){ 
+            $(item).remove(); 
+            a = 0;
+          }
+        });
+        if (a){$('#sortable1').append($(item));}        
       }else{
+        $('#sortable2 li').each(function(indice, elemento) {
+          if ($(elemento).attr('id') == $(item).attr('id')){ $(elemento).remove(); };
+        });
         $('#sortable2').append($(item));
       }
       listar_consultores();
@@ -68,77 +79,63 @@
                         <div class="input-field  col l2"><label>Periodo:</label></div>
 
                         <div class="input-field col l1">
-                            <!-- <input type="date" class="datepicker" id='dt1' name='dt1'> -->
-                            <select name="mes_desde">
-                              <option value="01">Enero</option>
-                              <option value="02">Febrero</option>
-                              <option value="03">Marzo</option>
-                              <option value="04">Abril</option>
-                              <option value="05">Mayo</option>
-                              <option value="06">Junio</option>
-                              <option value="07">Julio</option>
-                              <option value="08">Agosto</option>
-                              <option value="09">Septiembre</option>
-                              <option value="10">Octubre</option>
-                              <option value="11">Noviembre</option>
-                              <option value="12">Diciembre</option>
+                            <select name="mes_desde" id="mes_desde">
+                              <?php 
+                                if (isset($parametros)){ $p = $parametros['mes_desde']; }
+                                foreach ($meses as $num => $nombre) {
+                                  $sel = ($num+1 == $p )?'selected':'';
+                                  echo "<option value='" . ($num +1) . "' $sel>" . $nombre . "</option>";
+                                } 
+                              ?>
                             </select>
                             
-                        <label for='dt1'><i class="zmdi zmdi-calendar"></i>&nbsp;Desde</label>
+                        <label for='mes_desde'><i class="zmdi zmdi-calendar"></i>&nbsp;Desde</label>
                         </div>
                         <div class="input-field col l1">
                         <select name="anho_desde">
-                              <option value="2007">2007</option>
-                              <option value="2008">2008</option>
-                              <option value="2009">2009</option>
-                              <option value="2010">2010</option>
-                              <option value="2011">2011</option>
-                              <option value="2012">2012</option>
-                              <option value="2013">2013</option>
-                              <option value="2014">2014</option>
-                              <option value="2015">2015</option>
-                              <option value="2016">2016</option>
-                              <option value="2017">2017</option>
+                              <?php
+                                if (isset($parametros)){ $p = $parametros['anho_desde']; } 
+                                for ($i=10; $i >= 0; $i--) { 
+                                  $y = date("Y")-$i;
+                                   $sel = ($y == $p )?'selected':'';
+                                  echo "<option value='$y' $sel>$y</option>";
+                                }
+                              ?>
+
                             </select>
                         </div>
                         <div class="input-field col l1">
-                            <!-- <input type="date" class="datepicker" id='dt1' name='dt1'> -->
-                            <select name="mes_hasta">
-                              <option value="01">Enero</option>
-                              <option value="02">Febrero</option>
-                              <option value="03">Marzo</option>
-                              <option value="04">Abril</option>
-                              <option value="05">Mayo</option>
-                              <option value="06">Junio</option>
-                              <option value="07">Julio</option>
-                              <option value="08">Agosto</option>
-                              <option value="09">Septiembre</option>
-                              <option value="10">Octubre</option>
-                              <option value="11">Noviembre</option>
-                              <option value="12">Diciembre</option>
+                            <select name="mes_hasta" id="mes_hasta">
+                              <?php 
+                                if (isset($parametros)){ $p = $parametros['mes_hasta']; }
+                                foreach ($meses as $num => $nombre) {
+                                  $sel = ($num+1 == $p )?'selected':'';
+                                  echo "<option value='" . ($num +1) . "' $sel>" . $nombre . "</option>";
+                                } 
+                              ?>
+
                             </select>
                             
-                        <label for='dt1'><i class="zmdi zmdi-calendar"></i>&nbsp;hasta</label>
+                        <label for='mes_hasta'><i class="zmdi zmdi-calendar"></i>&nbsp;hasta</label>
                         </div>
                         <div class="input-field col l1">
+
                         <select name="anho_hasta">
-                              <option value="2007">2007</option>
-                              <option value="2008">2008</option>
-                              <option value="2009">2009</option>
-                              <option value="2010">2010</option>
-                              <option value="2011">2011</option>
-                              <option value="2012">2012</option>
-                              <option value="2013">2013</option>
-                              <option value="2014">2014</option>
-                              <option value="2015">2015</option>
-                              <option value="2016">2016</option>
-                              <option value="2017" selected>2017</option>
+                              <?php                                 
+                                if (isset($parametros)){ $p = $parametros['anho_hasta']; } 
+                                for ($i=0; $i <= 10; $i++) { 
+                                  $y = date("Y")-$i;
+                                  $sel = ($y == $p )?'selected':'';
+                                  echo "<option value='$y' $sel>$y</option>";
+                                }
+                              ?>
                             </select>
                         </div>
                     </div>
                     <div class="box col l12">
 
-                        <div class="input-field  col l2 s12"><label>Consultores:</label><input type="hidden" id='contultores_sel' name = 'contultores_sel' ></div>
+                        <div class="input-field  col l2 s12"><label>Consultores:</label>
+                        <input type="hidden" id='contultores_sel' name = 'contultores_sel' value="<?php if (isset($parametros)){ echo $parametros['contultores_sel']; }?>" ></div>
 
                         <div class="input-field col l6 s12">
                           <div class="row">
@@ -162,7 +159,14 @@
                             <div class="co l6 s12">
                               Seleccionado(s)<br>
                                 <ul id="sortable2" class="connectedSortable" >
-
+                                <?php 
+                                if (isset($parametros)){
+                                    $con = explode(",", $parametros['contultores_sel']);
+                                    foreach ($con as $row) {
+                                    echo "<li class='item_lista' id='".$row."'  onclick  ='javascript:item_click(this);'>".$row." </li>";      
+                                    }
+                                }
+                                ?>
                                 </ul>
                             </div>
                           </div>
@@ -171,7 +175,7 @@
                           <div class="row">
                             
                           
-                            <button onclick="javascript:ir('<?=base_url()?>performance/relatorio')" class="btn waves-effect waves-teal"><i class="zmdi zmdi-format-list-bulleted"></i> Relatorio</button> 
+                            <button onclick="javascript:ir('<?=base_url()?>performance/relatorio')" class="btn waves-effect waves-teal"><i class="zmdi zmdi-format-list-bulleted"></i> Reporte</button> 
                             <button onclick="javascript:ir('<?=base_url()?>performance/grafico')" class="btn waves-effect waves-teal "><i class="zmdi zmdi-developer-board"></i> Gráfico</button> 
                             <button onclick="javascript:ir('<?=base_url()?>performance/pizza')" class="btn waves-effect waves-teal "><i class="zmdi zmdi-pizza"></i> Pizza</button>
                           </div>
@@ -181,7 +185,7 @@
                 <br><br>
 
                 <?php 
-                  if (isset($ganancia)){
+                  if (isset($ganancia) && count($ganancia) > 0){
                       $this->load->view('comercial/relatorio');
                   };
                  ?>
@@ -200,6 +204,8 @@
             </div>
 
             <div id="test-swipe-2" class="col s12 ">Fuera del alcance
+
+            <?php echo var_dump($dump); ?>
    
             </div>
         </div>
